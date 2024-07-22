@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About Us - UniLink</title>
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <script
+      src="https://kit.fontawesome.com/ff7f76d416.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <header class="header-container">
+      <nav class="nav-items">
+        <img class="logo" src="assets/images/logo1.png" alt="logo" />
+        <ul id="menuList">
+          <li><a href="index.html">Home</a></li>
+          <li><a class="active" href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a class="login" href="login.php">Login</a></li>
+          <li><a class="signup" href="register.html">Register</a></li>
+        </ul>
+        <div class="bars">
+          <i class="fas fa-bars" onclick="toggleMenu()"></i>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <section class="about-section">
+        <h1>About UniLink</h1>
+        <p>
+          UniLink is a platform designed to foster communication and
+          collaboration among university students. Whether you're an
+          undergraduate or a postgraduate, UniLink offers a space to connect,
+          share knowledge, and support each other's academic journeys.
+        </p>
+        <h2>Our Mission</h2>
+        <p>
+          Our mission is to bridge the gap between students and create a
+          community where learning and collaboration thrive. We believe in the
+          power of shared knowledge and the potential it holds to transform
+          educational experiences.
+        </p>
+        <h2>Our Vision</h2>
+        <p>
+          We envision a world where students can easily connect and collaborate,
+          breaking down the barriers of isolation and creating a supportive
+          academic network that extends beyond the classroom.
+        </p>
+      </section>
+    </main>
+
+    <footer class="footer-container">
+      <div class="footer-items">
+        <img class="logo" src="assets/images/logo1.png" alt="logo" />
+        <ul id="footer-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a class="active" href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <p>(c) UniLink, Inc. 2024. Built with love!</p>
+      </div>
+    </footer>
+
+    <script>
+      let menuList = document.getElementById("menuList");
+      menuList.style.maxHeight = "0px";
+
+      function toggleMenu() {
+        if (menuList.style.maxHeight == "0px") {
+          menuList.style.maxHeight = "300px";
+        } else {
+          menuList.style.maxHeight = "0px";
+        }
+      }
+    </script>
+  </body>
+</html>
