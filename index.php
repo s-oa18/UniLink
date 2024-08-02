@@ -1,10 +1,17 @@
+<?php 
+  session_start();
+  if(isset($_SESSION['unique_id'])){
+    header("location: users.php");
+  }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>UniLink</title>
-    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="assets/css/index.css" />
     <script
       src="https://kit.fontawesome.com/ff7f76d416.js"
       crossorigin="anonymous"
@@ -19,7 +26,7 @@
           <li><a href="about.html">About</a></li>
           <li><a href="contact.html">Contact</a></li>
           <li><a class="login" href="signin.php">Login</a></li>
-          <li><a class="signup" href="signup.php">Register</a></li>
+          <li><a class="signup" href="register.php">Register</a></li>
         </ul>
         <div class="bars">
           <i class="fas fa-bars" onclick="toggleMenu()"></i>
