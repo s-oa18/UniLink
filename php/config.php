@@ -4,10 +4,9 @@
   $username = "sellontech";
   $password = "@Checkers124";
   $dbname = "unilinkdb";
-  
 
   // Path to the SSL CA certificate
-  $ssl_ca = "/Applications/DigiCertGlobalRootCA.crt.pem";
+  $ssl_ca = "/Applications/DigiCertGlobalRootCA.crt.pem"; // Ensure the path is correct and accessible
 
   // Initialize the MySQL connection
   $conn = mysqli_init();
@@ -16,15 +15,9 @@
   mysqli_ssl_set($conn, NULL, NULL, $ssl_ca, NULL, NULL);
 
   // Establish the connection
-  if (!mysqli_real_connect($conn, $hostname, $username, $password, $dbname, 3306, MYSQLI_CLIENT_SSL)) {
+  if (!mysqli_real_connect($conn, $hostname, $username, $password, $dbname, 3306, NULL, MYSQLI_CLIENT_SSL)) {
     die("Database connection error: " . mysqli_connect_error());
   }
 
-  echo "Successfully connected to Azure Database for MySQL.";
-
-  // Close the connection
-  mysqli_close($conn);
+  
 ?>
-
-
-
