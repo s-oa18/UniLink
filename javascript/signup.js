@@ -14,7 +14,9 @@ continueBtn.onclick = () => {
       if (xhr.status === 200) {
         let data = xhr.response.trim();
         if (data === "success") {
-          location.href = "users.php";
+          alert("Registration successful. You can log in here.");
+          location.href =
+            "login.php?message=Registration successful. You can log in here.";
         } else {
           errorText.style.display = "block";
           errorText.textContent = data;

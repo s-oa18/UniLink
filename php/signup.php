@@ -39,14 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 $insert_query = mysqli_query($conn, "INSERT INTO users (unique_id, fname, lname, email, password, program, degree_level, gender, country, img, status)
                                 VALUES ({$ran_id}, '{$fname}', '{$lname}', '{$email}', '{$encrypt_pass}', '{$program}', '{$degree_level}', '{$gender}', '{$country}', '{$new_img_name}', '{$status}')");
                                 if ($insert_query) {
-                                    $select_sql2 = mysqli_query($conn, "SELECT * FROM users WHERE email = '{$email}'");
-                                    if (mysqli_num_rows($select_sql2) > 0) {
-                                        $result = mysqli_fetch_assoc($select_sql2);
-                                        $_SESSION['unique_id'] = $result['unique_id'];
-                                        echo "success";
-                                    } else {
-                                        echo "This email address does not exist!";
-                                    }
+                                    echo "success";
                                 } else {
                                     echo "Something went wrong. Please try again!";
                                 }
@@ -67,4 +60,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-mysqli_close($conn);
+
+?>
