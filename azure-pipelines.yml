@@ -1,0 +1,63 @@
+# PHP
+# Test and package your PHP project.
+# Add steps that run tests, save build artifacts, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/php
+
+trigger:
+- main
+
+pool:
+  name: 'MySelfHostedPool' 
+
+variables:
+  phpVersion: 7.2
+
+steps:
+# Check out the repository
+- checkout: self
+
+- script: |
+    echo "Current working directory: $(Build.SourcesDirectory)"
+    ls -R $(Build.SourcesDirectory)
+  displayName: 'List directory structure'
+
+# Set PHP version
+- script: |
+    sudo update-alternatives --set php /usr/bin/php$(phpVersion)
+    sudo update-alternatives --set phar /usr/bin/phar$(phpVersion)
+    sudo update-alternatives --set phpdbg /usr/bin/phpdbg$(phpVersion)
+    sudo update-alternatives --set php-cgi /usr/bin/php-cgi$(phpVersion)
+    sudo update-alternatives --set phar.phar /usr/bin/phar.phar$(phpVersion)
+    php -version
+  displayName: 'Use PHP version $(phpVersion)'
+
+# Install Composer dependencies
+- script: |
+    php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+    php composer-setup.php
+    php -r "unlink('composer-setup.php');"
+    php composer.phar install --no-interaction --prefer-dist
+  displayName: 'Install Composer dependencies'
+  workingDirectory: '$(Build.SourcesDirectory)' # Adjust this if your composer.json is in a subdirectory
+
+# Run PHPUnit tests
+- script: |
+    vendor/bin/phpunit
+  displayName: 'Run PHPUnit tests'
+  workingDirectory: '$(Build.SourcesDirectory)' # Adjust this if your tests are in a subdirectory
+
+# Copy files to staging directory
+- task: CopyFiles@2
+  inputs:
+    SourceFolder: '$(Build.SourcesDirectory)'
+    Contents: '**'
+    TargetFolder: '$(Build.ArtifactStagingDirectory)'
+  displayName: 'Copy files to staging directory'
+
+# Publish build artifacts
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'drop'
+    publishLocation: 'Container'
+  displayName: 'Publish artifacts'
