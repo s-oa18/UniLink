@@ -13,6 +13,9 @@ variables:
   phpVersion: 7.2
 
 steps:
+# Check out the repository
+- checkout: self
+
 # Set PHP version
 - script: |
     sudo update-alternatives --set php /usr/bin/php$(phpVersion)
@@ -30,11 +33,13 @@ steps:
     php -r "unlink('composer-setup.php');"
     php composer.phar install --no-interaction --prefer-dist
   displayName: 'Install Composer dependencies'
+  workingDirectory: '$(Build.SourcesDirectory)' # Adjust this if your composer.json is in a subdirectory
 
 # Run PHPUnit tests
 - script: |
     vendor/bin/phpunit
   displayName: 'Run PHPUnit tests'
+  workingDirectory: '$(Build.SourcesDirectory)' # Adjust this if your tests are in a subdirectory
 
 # Copy files to staging directory
 - task: CopyFiles@2
