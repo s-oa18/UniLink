@@ -16,6 +16,11 @@ steps:
 # Check out the repository
 - checkout: self
 
+- script: |
+    echo "Current working directory: $(Build.SourcesDirectory)"
+    ls -R $(Build.SourcesDirectory)
+  displayName: 'List directory structure'
+
 # Set PHP version
 - script: |
     sudo update-alternatives --set php /usr/bin/php$(phpVersion)
