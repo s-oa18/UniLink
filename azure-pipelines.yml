@@ -16,6 +16,7 @@ steps:
 # Check out the repository
 - checkout: self
 
+# Log the directory structure
 - script: |
     echo "Current working directory: $(Build.SourcesDirectory)"
     ls -R $(Build.SourcesDirectory)
@@ -38,13 +39,13 @@ steps:
     php -r "unlink('composer-setup.php');"
     php composer.phar install --no-interaction --prefer-dist
   displayName: 'Install Composer dependencies'
-  workingDirectory: '$(Build.SourcesDirectory)' # Adjust this if your composer.json is in a subdirectory
+  workingDirectory: '$(Build.SourcesDirectory)'
 
 # Run PHPUnit tests
 - script: |
     vendor/bin/phpunit
   displayName: 'Run PHPUnit tests'
-  workingDirectory: '$(Build.SourcesDirectory)' # Adjust this if your tests are in a subdirectory
+  workingDirectory: '$(Build.SourcesDirectory)'
 
 # Copy files to staging directory
 - task: CopyFiles@2
