@@ -1,0 +1,26 @@
+name: Build
+
+on:
+  push:
+    branches:
+      - main # main branch name
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  sonarQubeScan1:
+    name: SonarQube Scan
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Fetch full history for SonarQube analysis
+
+      - name: SonarQube Scan
+        uses: sonarsource/sonarqube-scan-action@master
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }} # Analysis token associated with your project
+          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+        with:
+          projectBaseDir: . # Root directory of your repository
