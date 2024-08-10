@@ -38,9 +38,12 @@ steps:
       SonarQube: "unilink-sonarqube" # Your SonarQube service connection name
       scannerMode: "CLI"
       configMode: "manual"
-      cliProjectKey: "unilink-local" # Replace with your SonarQube project key
-      cliProjectName: "unilink-local" # Replace with your SonarQube project name
-      displayName: "Prepare SonarQube analysis"
+      cliOptions: >
+      -Dsonar.projectKey=unilink-local
+      -Dsonar.organization=unilink-local
+    displayName: 'Prepare SonarQube analysis'
+
+     
 
   # Run SonarQube analysis
   - task: SonarQubeAnalyze@6
