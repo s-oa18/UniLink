@@ -32,18 +32,16 @@ steps:
       ./vendor/bin/phpunit --log-junit test-results.xml --coverage-clover coverage.xml tests/
     displayName: "Run PHPUnit tests"
 
-    # Prepare SonarQube configuration
+  # Prepare SonarQube configuration
   - task: SonarQubePrepare@6
     inputs:
       SonarQube: "unilink-sonarqube" # Your SonarQube service connection name
       scannerMode: "CLI"
       configMode: "manual"
-      cliOptions: >
-      -Dsonar.projectKey=unilink-local
-      -Dsonar.organization=unilink-local
-    displayName: 'Prepare SonarQube analysis'
-
-     
+      cliOptions: |
+        -Dsonar.projectKey=unilink-local
+        -Dsonar.organization=unilink-local
+    displayName: "Prepare SonarQube analysis"
 
   # Run SonarQube analysis
   - task: SonarQubeAnalyze@6
