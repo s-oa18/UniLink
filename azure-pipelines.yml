@@ -13,6 +13,11 @@ variables:
   phpVersion: 8.3
 
 steps:
+- task: SonarQubePrepare@6
+  inputs:
+    SonarQube: 'unilink-sonarqube'
+    scannerMode: 'Other'
+
 - script: |
     sudo update-alternatives --set php /usr/bin/php$(phpVersion)
     sudo update-alternatives --set phar /usr/bin/phar$(phpVersion)
@@ -24,3 +29,8 @@ steps:
 
 - script: composer install --no-interaction --prefer-dist
   displayName: 'composer install'
+
+- task: PublishTestResults@2
+  inputs:
+    testResultsFormat: 'JUnit'
+    testResultsFiles: '**/TEST-*.xml'
