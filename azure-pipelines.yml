@@ -13,16 +13,6 @@ variables:
   phpVersion: 8.3
 
 steps:
-  # Prepare SonarQube configuration
-  - task: SonarQubePrepare@6
-    inputs:
-      SonarQube: "unilink-sonarqube" # Your SonarQube service connection name
-      scannerMode: "CLI"
-      configMode: "manual"
-      cliProjectKey: "unilink-local" # Replace with your SonarQube project key
-      cliProjectName: "unilink-local" # Replace with your SonarQube project name
-      cliSources: "." # Directory to scan, usually the root of your repository
-
   # Set PHP version
   - script: |
       sudo update-alternatives --set php /usr/bin/php$(phpVersion)
@@ -41,6 +31,16 @@ steps:
   - script: |
       ./vendor/bin/phpunit --log-junit test-results.xml --coverage-clover coverage.xml tests/
     displayName: "Run PHPUnit tests"
+
+    # Prepare SonarQube configuration
+  - task: SonarQubePrepare@6
+    inputs:
+      SonarQube: "unilink-sonarqube" # Your SonarQube service connection name
+      scannerMode: "CLI"
+      configMode: "manual"
+      cliProjectKey: "unilink-local" # Replace with your SonarQube project key
+      cliProjectName: "unilink-local" # Replace with your SonarQube project name
+      displayName: "Prepare SonarQube analysis"
 
   # Run SonarQube analysis
   - task: SonarQubeAnalyze@6
