@@ -39,7 +39,7 @@ steps:
 
   # Run PHPUnit tests (optional, based on your needs)
   - script: |
-      ./vendor/bin/phpunit --log-junit test-results.xml --coverage-clover coverage.xml
+      ./vendor/bin/phpunit --log-junit test-results.xml --coverage-clover coverage.xml tests/
     displayName: "Run PHPUnit tests"
 
   # Run SonarQube analysis
