@@ -4,7 +4,7 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/php
 
 trigger:
-- main
+  - main
 
 pool:
   vmImage: ubuntu-latest
@@ -13,48 +13,48 @@ variables:
   phpVersion: 8.3
 
 steps:
-# Prepare SonarQube configuration
-- task: SonarQubePrepare@6
-  inputs:
-    SonarQube: 'unilink-sonarqube'  # Your SonarQube service connection name
-    scannerMode: 'CLI'
-    configMode: 'manual'
-    cliProjectKey: 'unilink-local'  # Replace with your SonarQube project key
-    cliProjectName: 'unilink-local'  # Replace with your SonarQube project name
-    cliSources: '.'  # Directory to scan, usually the root of your repository
+  # Prepare SonarQube configuration
+  - task: SonarQubePrepare@6
+    inputs:
+      SonarQube: "unilink-sonarqube" # Your SonarQube service connection name
+      scannerMode: "CLI"
+      configMode: "manual"
+      cliProjectKey: "unilink-local" # Replace with your SonarQube project key
+      cliProjectName: "unilink-local" # Replace with your SonarQube project name
+      cliSources: "." # Directory to scan, usually the root of your repository
 
-# Set PHP version
-- script: |
-    sudo update-alternatives --set php /usr/bin/php$(phpVersion)
-    sudo update-alternatives --set phar /usr/bin/phar$(phpVersion)
-    sudo update-alternatives --set phpdbg /usr/bin/phpdbg$(phpVersion)
-    sudo update-alternatives --set php-cgi /usr/bin/php-cgi$(phpVersion)
-    sudo update-alternatives --set phar.phar /usr/bin/phar.phar$(phpVersion)
-    php -version
-  displayName: 'Use PHP version $(phpVersion)'
+  # Set PHP version
+  - script: |
+      sudo update-alternatives --set php /usr/bin/php$(phpVersion)
+      sudo update-alternatives --set phar /usr/bin/phar$(phpVersion)
+      sudo update-alternatives --set phpdbg /usr/bin/phpdbg$(phpVersion)
+      sudo update-alternatives --set php-cgi /usr/bin/php-cgi$(phpVersion)
+      sudo update-alternatives --set phar.phar /usr/bin/phar.phar$(phpVersion)
+      php -version
+    displayName: "Use PHP version $(phpVersion)"
 
-# Install Composer dependencies
-- script: composer install --no-interaction --prefer-dist
-  displayName: 'composer install'
+  # Install Composer dependencies
+  - script: composer install --no-interaction --prefer-dist
+    displayName: "composer install"
 
-# Run PHPUnit tests (optional, based on your needs)
-- script: |
-    ./vendor/bin/phpunit --log-junit test-results.xml
-  displayName: 'Run PHPUnit tests'
+  # Run PHPUnit tests (optional, based on your needs)
+  - script: |
+      ./vendor/bin/phpunit --log-junit test-results.xml --coverage-clover coverage.xml
+    displayName: "Run PHPUnit tests"
 
-# Run SonarQube analysis
-- task: SonarQubeAnalyze@6
-  displayName: 'Run SonarQube analysis'
+  # Run SonarQube analysis
+  - task: SonarQubeAnalyze@6
+    displayName: "Run SonarQube analysis"
 
-# Publish SonarQube results
-- task: SonarQubePublish@6
-  inputs:
-    pollingTimeoutSec: '300'
-  displayName: 'Publish SonarQube results'
+  # Publish SonarQube results
+  - task: SonarQubePublish@6
+    inputs:
+      pollingTimeoutSec: "300"
+    displayName: "Publish SonarQube results"
 
-# Publish test results (if applicable)
-- task: PublishTestResults@2
-  inputs:
-    testResultsFormat: 'JUnit'
-    testResultsFiles: '**/test-results.xml'
-  displayName: 'Publish test results'
+  # Publish test results (if applicable)
+  - task: PublishTestResults@2
+    inputs:
+      testResultsFormat: "JUnit"
+      testResultsFiles: "**/test-results.xml"
+    displayName: "Publish test results"
