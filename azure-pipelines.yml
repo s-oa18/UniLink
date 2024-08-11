@@ -35,12 +35,16 @@ steps:
     # Prepare SonarQube configuration
   - task: SonarQubePrepare@6
     inputs:
-      SonarQube: "unilink-sonarqube" # Your SonarQube service connection name
+      SonarQube: "unilink-sonarqube" # Ensure this line is properly indented
       scannerMode: "CLI"
       configMode: "manual"
-      cliProjectKey: "unilink-local" # Replace with your SonarQube project key
-      cliProjectName: "unilink-local" # Replace with your SonarQube project name
-      displayName: "Prepare SonarQube analysis"
+      extraProperties: |
+        sonar.projectKey=unilink-local
+        sonar.projectName=unilink-local
+        sonar.sources=src
+        sonar.exclusions=**/*.test.*, **/node_modules/**
+    displayName: "Prepare SonarQube analysis"
+
 
   # Run SonarQube analysis
   - task: SonarQubeAnalyze@6
