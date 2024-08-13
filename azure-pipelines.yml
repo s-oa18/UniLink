@@ -27,6 +27,22 @@ steps:
   - script: composer install --no-interaction --prefer-dist
     displayName: "composer install"
 
+  - task: SonarQubePrepare@6
+    inputs:
+      SonarQube: 'My_sonarQube'
+      scannerMode: 'CLI'
+      configMode: 'manual'
+      cliProjectKey: 'UniLink_Devops_UniLink_Devops_54a5a188-aa8b-4d1e-8568-8e5da6cf8d12'
+      cliSources: '.'
+
+  - task: SonarQubeAnalyze@6
+    inputs:
+      jdkversion: 'JAVA_HOME_17_X64'
+
+  - task: SonarQubePublish@6
+    inputs:
+      pollingTimeoutSec: '300'
+
   # Run PHPUnit tests (optional, based on your needs)
   - script: |
       ./vendor/bin/phpunit --log-junit test-results.xml --coverage-clover coverage.xml tests/
