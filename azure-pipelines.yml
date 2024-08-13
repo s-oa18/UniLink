@@ -35,9 +35,6 @@ steps:
       cliProjectKey: 'UniLink_Devops_UniLink_Devops_54a5a188-aa8b-4d1e-8568-8e5da6cf8d12'
       cliSources: '.'
 
-  - task: SonarQubeAnalyze@6
-    inputs:
-      jdkversion: 'JAVA_HOME_17_X64'
 
   - task: SonarQubePublish@6
     inputs:
