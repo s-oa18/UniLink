@@ -25,7 +25,7 @@
           <li><a class="active" href="index.html">Home</a></li>
           <li><a href="about.html">About</a></li>
           <li><a href="contact.html">Contact</a></li>
-          <li><a class="login" href="signin.php">Login</a></li>
+          <li><a class="login" href="login.php">Login</a></li>
           <li><a class="signup" href="register.php">Register</a></li>
         </ul>
         <div class="bars">
