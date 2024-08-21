@@ -25,6 +25,7 @@
           <span><?php echo $row['fname']. " " . $row['lname'] ?></span>
           <p><?php echo $row['status']; ?></p>
         </div>
+        
       </header>
       <div class="chat-box">
 

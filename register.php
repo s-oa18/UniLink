@@ -9,7 +9,7 @@
 <body>
   <div class="wrapper">
     <section class="form signup">
-      <header>UniLink</header>
+      <header>Sign Up UniLink</header>
       <form action="#" method="POST" enctype="multipart/form-data" autocomplete="off">
         <div class="error-text"></div>
         <div class="name-details">
@@ -64,7 +64,7 @@
           <input type="file" name="image" accept="image/x-png,image/gif,image/jpeg,image/jpg" required>
         </div>
         <div class="field button">
-          <input type="submit" name="submit" value="Continue to Chat">
+          <input type="submit" name="submit" value="Register">
         </div>
       </form>
       <div class="link">Already signed up? <a href="login.php">Login now</a></div>

@@ -9,7 +9,7 @@ if(isset($_SESSION['unique_id'])){
 <body>
   <div class="wrapper">
     <section class="form login">
-      <header>Unilink</header>
+      <header>Sign into UniLink</header>
       <?php
         if(isset($_GET['message'])){
           echo "<div class='success-text'>" . htmlspecialchars($_GET['message']) . "</div>";
