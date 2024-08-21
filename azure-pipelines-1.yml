@@ -25,6 +25,9 @@ steps:
 - script: composer install --no-interaction --prefer-dist
   displayName: 'composer install'
 
+- script: ./vendor/bin/phpunit --log-junit test-reports/phpunit.xml
+  displayName: 'Run PHPUnit tests'
+
 - task: SonarQubePrepare@6
   inputs:
     SonarQube: 'My_SonarQube'
@@ -44,4 +47,4 @@ steps:
 - task: PublishTestResults@2
   inputs:
     testResultsFormat: 'JUnit'
-    testResultsFiles: '**/TEST-*.xml'
+    testResultsFiles: 'test-reports/phpunit.xml'
