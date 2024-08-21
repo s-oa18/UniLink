@@ -59,7 +59,7 @@
           <li><a href="about.html">About</a></li>
           <li><a href="contact.html">Contact</a></li>
         </ul>
-        <p>(c) UniLink, Inc. 2024. built with love!</p>
+        <p>(c) UniLink, Inc. 2024. built with love!!</p>
       </div>
     </footer>
 
