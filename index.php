@@ -55,7 +55,7 @@
       <div class="footer-items">
         <img class="logo" src="assets/images/logo1.png" alt="logo" />
         <ul id="footer-links">
-          <li><a class="active" href="index.html">Home</a></li>
+          <li><a class="active" href="index.php">Home</a></li>
           <li><a href="about.html">About</a></li>
           <li><a href="contact.html">Contact</a></li>
         </ul>
