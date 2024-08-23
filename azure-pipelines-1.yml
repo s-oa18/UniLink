@@ -42,7 +42,11 @@ steps:
   inputs:
     pollingTimeoutSec: '300'
   
+- script: ./phpunit
+  displayName: 'Run tests with phpunit'
+
 - task: PublishTestResults@2
   inputs:
     testResultsFormat: 'JUnit'
     testResultsFiles: 'test-reports/phpunit.xml'
+
