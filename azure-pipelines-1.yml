@@ -42,7 +42,7 @@ steps:
   inputs:
     pollingTimeoutSec: '300'
   
-- script: ./phpunit
+- script: ./vendor/bin/phpunit
   displayName: 'Run tests with phpunit'
 
 - task: PublishTestResults@2
