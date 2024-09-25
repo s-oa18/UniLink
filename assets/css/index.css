@@ -119,6 +119,14 @@ footer {
   color: black;
 }
 
+.about-section {
+  height: 100vh;
+  max-width: 900px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .about-section,
 .contact-section {
   padding: 20px;
@@ -134,7 +142,7 @@ footer {
 .about-section p,
 .contact-section p {
   font-size: 1.2rem;
-  margin-bottom: 20px;
+  margin-bottom: 80px;
   line-height: 1.5;
 }
 
