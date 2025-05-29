@@ -52,7 +52,7 @@ The tech stack used for the project are:
 
 
 
-_Other images to be added_
+
 
 
 
