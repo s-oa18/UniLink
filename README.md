@@ -14,7 +14,7 @@ The tech stack used for the project are:
 - Database: Azure Database for MySQL
 - Cloud Platform: Microsoft Azure
 - CI/CD Pipeline: Azure DevOps
-- Security Tools: SonarQube for SAST, OWASP ZAP for DAST, Snyk for Dependency Security Scans
+- Security Tools: SonarQube for SAST
 - Version Control: GitHub
 
 ## How to Run Project
